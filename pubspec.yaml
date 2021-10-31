@@ -1,7 +1,7 @@
 name: korea_regexp
-description: A new Flutter package.
+description: 정규표현식을 이용해서 한국어를 더 쉽게 다룰 수 있게 해주는 플러그인입니다.
 version: 0.0.1
-homepage:
+repository : https://github.com/jpoh281/flutter_korea_regexp
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
