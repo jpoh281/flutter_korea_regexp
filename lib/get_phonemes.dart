@@ -10,7 +10,6 @@ PhonemesResult getPhonemes(String char) {
   var medialOffset = -1;
   var finaleOffset = -1;
 
-
   if (onlyInitialKoreanRegex.hasMatch(char)) {
     initial = char;
     initialOffset = INITIALS.indexOf(initial);
@@ -23,8 +22,6 @@ PhonemesResult getPhonemes(String char) {
     initial = INITIALS[initialOffset];
     medial = MEDIALS[medialOffset];
     finale = FINALES[finaleOffset];
-  } else {
-    print(char);
   }
 
   return PhonemesResult(
