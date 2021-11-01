@@ -1,6 +1,7 @@
 # korea_regexp
 
 https://github.com/bluewings/korean-regexp
+
 해당 깃허브를 보고 자바스크립트로 구현된 한글 정규표현식 패키지를 다트로 변경한 플러그인입니다.
 
 ## 현재 구현된 기능
