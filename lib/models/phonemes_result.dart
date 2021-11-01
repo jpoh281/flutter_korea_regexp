@@ -4,7 +4,7 @@ class PhonemesResult {
   final String finale;
   final int initialOffset;
   final int medialOffset;
-  final int finaleOffset ;
+  final int finaleOffset;
 
   PhonemesResult(
       {this.initial = '',
@@ -13,7 +13,4 @@ class PhonemesResult {
       this.initialOffset = -1,
       this.medialOffset = -1,
       this.finaleOffset = -1});
-
-
-
 }

@@ -108,7 +108,7 @@ const Map<String, List<String>> MIXED = {
   'ㅢ': ['ㅡ', 'ㅣ']
 };
 
-const  Map<String, List<String>> MEDIAL_RANGE = {
+const Map<String, List<String>> MEDIAL_RANGE = {
   'ㅗ': ['ㅗ', 'ㅚ'],
   'ㅜ': ['ㅜ', 'ㅟ'],
   'ㅡ': ['ㅡ', 'ㅢ']

@@ -12,8 +12,8 @@ getInitialSearchRegExp(String initial) {
   return initial;
 }
 
-var FUZZY = '__${int.parse('fuzzy',radix : 36)}__';
-var IGNORE_SPACE = '__${int.parse('ignorespace',radix : 36)}__';
+var FUZZY = '__${int.parse('fuzzy', radix: 36)}__';
+var IGNORE_SPACE = '__${int.parse('ignorespace', radix: 36)}__';
 
 getRegExp(String search, RegExpOptions options) {
   List<String> frontChars = search.split('');
@@ -36,14 +36,11 @@ getRegExp(String search, RegExpOptions options) {
       // 종성이 초성으로 사용 가능한 경우
       if (INITIALS.contains(phonemes.finale)) {
         patterns.add(
-            '${String.fromCharCode(baseCode + phonemes.medialOffset *
-                FINALES.length)}${getInitialSearchRegExp(phonemes.finale)}');
+            '${String.fromCharCode(baseCode + phonemes.medialOffset * FINALES.length)}${getInitialSearchRegExp(phonemes.finale)}');
       }
       if (MIXED[phonemes.finale] != null) {
-        patterns.add('${String.fromCharCode(
-            (baseCode + phonemes.medialOffset * FINALES.length +
-                FINALES.join('').indexOf(MIXED[phonemes.finale]![0])) +
-                1)}${getInitialSearchRegExp(MIXED[phonemes.finale]![1])}');
+        patterns.add(
+            '${String.fromCharCode((baseCode + phonemes.medialOffset * FINALES.length + FINALES.join('').indexOf(MIXED[phonemes.finale]![0])) + 1)}${getInitialSearchRegExp(MIXED[phonemes.finale]![1])}');
       }
     } else if (phonemes.medial != '') {
       int from, to;
@@ -54,7 +51,9 @@ getRegExp(String search, RegExpOptions options) {
                 FINALES.length;
         to = baseCode +
             MEDIALS.join('').indexOf(MEDIAL_RANGE[phonemes.medial]![1]) *
-                FINALES.length + FINALES.length - 1;
+                FINALES.length +
+            FINALES.length -
+            1;
       } else {
         from = baseCode + phonemes.medialOffset * FINALES.length;
         to = from + FINALES.length - 1;
@@ -64,22 +63,30 @@ getRegExp(String search, RegExpOptions options) {
       patterns.add(getInitialSearchRegExp(phonemes.initial));
     }
     lastCharPattern =
-    patterns.length > 1 ? '(${patterns.join('|')})' : patterns[0];
+        patterns.length > 1 ? '(${patterns.join('|')})' : patterns[0];
   }
-  var glue = options.fuzzy ? FUZZY : options.ignoreSpace ? IGNORE_SPACE : '';
+  var glue = options.fuzzy
+      ? FUZZY
+      : options.ignoreSpace
+          ? IGNORE_SPACE
+          : '';
   var frontCharsPattern = options.initialSearch
-      ? frontChars.map((char) =>
-        (RegExp('[ㄱ-ㅎ]').hasMatch(char)
-          ? getInitialSearchRegExp(char)
-          : escapeRegExp(char))).join(glue)
+      ? frontChars
+          .map((char) => (RegExp('[ㄱ-ㅎ]').hasMatch(char)
+              ? getInitialSearchRegExp(char)
+              : escapeRegExp(char)))
+          .join(glue)
       : escapeRegExp(frontChars.join(glue));
-  var pattern = (options.startsWith ? '^' : '') + frontCharsPattern + glue + lastCharPattern + (options.endsWith ? '\$' : '');
+  var pattern = (options.startsWith ? '^' : '') +
+      frontCharsPattern +
+      glue +
+      lastCharPattern +
+      (options.endsWith ? '\$' : '');
 
   if (glue != '') {
-  pattern = pattern
-      .replaceAll(RegExp(FUZZY), '\.*')
-      .replaceAll(RegExp(IGNORE_SPACE), '\s*');
-
+    pattern = pattern
+        .replaceAll(RegExp(FUZZY), '\.*')
+        .replaceAll(RegExp(IGNORE_SPACE), '\s*');
   }
   return RegExp(pattern, caseSensitive: !options.ignoreCase);
 }
