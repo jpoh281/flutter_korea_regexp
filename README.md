@@ -16,6 +16,7 @@ https://github.com/bluewings/korean-regexp
 ## 기능 설명
 
 ### 한글 자동완성을 위한 정규식
+![KakaoTalk_Photo_2021-11-01-23-59-33](https://user-images.githubusercontent.com/54665433/139692643-126e799b-a38a-482c-ae41-8a1609e85e07.gif)
 - initial search : 초성으로 검색 여부
 ex) ㄱㅇㄷ -> 강원도
 
@@ -30,7 +31,10 @@ ex) ㄱㅇㄷ -> 강원도
 - fuzzy
 
 ### 한타 -> 영타
+![KakaoTalk_Photo_2021-11-01-23-58-35](https://user-images.githubusercontent.com/54665433/139692493-245f66f1-5b30-4152-af0b-2f25d3d85c6f.gif)
 
 ### 자소 분리
+![KakaoTalk_Photo_2021-11-01-23-56-29](https://user-images.githubusercontent.com/54665433/139692340-ff124f09-bd2f-4ca4-ac8b-df1f39fb27d4.gif)
 
 천천히 추가할 예정이지만, 완성되지 않은 기능이나 에러에 대한 pr은 언제나 환영입니다.
+
