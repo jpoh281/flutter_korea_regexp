@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:korea_regexp/explode.dart';
+import 'package:korea_regexp/korea_regexp.dart';
 
 class ExplodePage extends StatefulWidget {
   const ExplodePage({Key? key}) : super(key: key);

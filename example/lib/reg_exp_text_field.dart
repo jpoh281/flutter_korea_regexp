@@ -1,8 +1,7 @@
 import 'package:example/main.dart';
 import 'package:example/reg_exp_page.dart';
 import 'package:flutter/material.dart';
-import 'package:korea_regexp/get_regexp.dart';
-import 'package:korea_regexp/models/regexp_options.dart';
+import 'package:korea_regexp/korea_regexp.dart';
 
 class RegExpTextField extends StatefulWidget {
   const RegExpTextField({Key? key}) : super(key: key);
