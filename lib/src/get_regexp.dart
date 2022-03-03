@@ -1,7 +1,7 @@
-import 'package:korea_regexp/constant.dart';
-import 'package:korea_regexp/escape_regexp.dart';
-import 'package:korea_regexp/get_phonemes.dart';
-import 'package:korea_regexp/models/regexp_options.dart';
+import 'package:korea_regexp/src/constant.dart';
+import 'package:korea_regexp/src/escape_regexp.dart';
+import 'package:korea_regexp/src/get_phonemes.dart';
+import 'package:korea_regexp/src/models/regexp_options.dart';
 
 getInitialSearchRegExp(String initial) {
   var initialOffset = INITIALS.indexOf(initial);

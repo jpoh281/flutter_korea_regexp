@@ -1,6 +1,6 @@
-import 'package:korea_regexp/constant.dart';
-import 'package:korea_regexp/get_phonemes.dart';
-import 'package:korea_regexp/models/phonemes_result.dart';
+import 'package:korea_regexp/src/constant.dart';
+import 'package:korea_regexp/src/get_phonemes.dart';
+import 'package:korea_regexp/src/models/phonemes_result.dart';
 
 explode(String text, {bool grouped = false}) {
   List<List<String>> accum = [];

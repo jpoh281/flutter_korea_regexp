@@ -1,5 +1,5 @@
-import 'package:korea_regexp/constant.dart';
-import 'package:korea_regexp/models/phonemes_result.dart';
+import 'package:korea_regexp/src/constant.dart';
+import 'package:korea_regexp/src/models/phonemes_result.dart';
 
 PhonemesResult getPhonemes(String char) {
   var initial = '';
