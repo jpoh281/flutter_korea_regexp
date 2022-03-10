@@ -8,7 +8,7 @@ https://github.com/bluewings/korean-regexp
 - [x] 한글 자동완성을 위한 정규식
 - [ ] 영타 -> 한타
 - [x] 한타 -> 영타
-- [ ] 조사 자동 치환
+- [x] 조사 자동 치환
 - [X] 자소 분리
 - [ ] 자소 합치기
 
@@ -35,6 +35,11 @@ ex) ㄱㅇㄷ -> 강원도
 
 ### 자소 분리
 ![KakaoTalk_Photo_2021-11-01-23-56-29](https://user-images.githubusercontent.com/54665433/139692340-ff124f09-bd2f-4ca4-ac8b-df1f39fb27d4.gif)
+
+### 자소 자동 치환
+![KakaoTalk_Photo_2022-03-11-00-13-48](https://user-images.githubusercontent.com/54665433/157692127-39c438cb-6241-4c0f-962a-e5bf1517663a.gif)
+
+
 
 천천히 추가할 예정이지만, 완성되지 않은 기능이나 에러에 대한 pr은 언제나 환영입니다.
 
