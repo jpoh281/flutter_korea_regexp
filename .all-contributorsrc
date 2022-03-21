@@ -5,7 +5,22 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
+    { 
+      "login": "jpoh281",
+      "name": "홍종표",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54665433?v=4",
+      "profile": "https://honor-driven.dev/",
+      "contributions": [
+        "code",
+        "doc",
+        "test",
+        "ideas",
+        "maintenance"
+
+      ]
+    }
     {
+
       "login": "viiviii",
       "name": "viiviii",
       "avatar_url": "https://avatars.githubusercontent.com/u/75404713?v=4",
