@@ -49,12 +49,8 @@ ex) ㄱㅇㄷ -> 강원도
 ![KakaoTalk_Photo_2022-03-11-00-13-48](https://user-images.githubusercontent.com/54665433/157692127-39c438cb-6241-4c0f-962a-e5bf1517663a.gif)
 
 
-
-천천히 추가할 예정이지만, 완성되지 않은 기능이나 에러에 대한 pr은 언제나 환영입니다.
-
-
 ## Contributors ✨
-
+### Issue, PR 언제나 환영입니다.
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -71,5 +67,4 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
