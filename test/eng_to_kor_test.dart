@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:korea_regexp/src/eng_to_kor.dart';
+import 'package:test/test.dart';
 
 main() {
   group('engToKor', () {

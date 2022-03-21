@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:korea_regexp/korea_regexp.dart';
+import 'package:test/test.dart';
 
 void main (){
   List<List<dynamic>> getPhonemesTest = [

@@ -1,5 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
 import 'package:korea_regexp/src/correct_postpositions.dart';
+import 'package:test/test.dart';
 
 void main(){
   [
