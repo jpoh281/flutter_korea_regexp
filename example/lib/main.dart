@@ -1,6 +1,7 @@
 import 'package:csv/csv.dart';
 import 'package:example/correct_postpositions_page.dart';
 import 'package:example/explode_page.dart';
+import 'package:example/implode_page.dart';
 import 'package:example/kor_to_eng_page.dart';
 import 'package:example/reg_exp_page.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,13 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => ExplodePage()));
               },
               child: Text("자소 분리"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ImplodePage()));
+              },
+              child: Text("자소 합치기"),
             ),
             TextButton(
               onPressed: () {
