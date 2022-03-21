@@ -1,5 +1,6 @@
 import 'package:csv/csv.dart';
 import 'package:example/correct_postpositions_page.dart';
+import 'package:example/eng_to_kor_page.dart';
 import 'package:example/explode_page.dart';
 import 'package:example/implode_page.dart';
 import 'package:example/kor_to_eng_page.dart';
@@ -62,6 +63,13 @@ class HomePage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => KorToEngPage()));
               },
               child: Text("한글 -> 영어"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EngToKorPage()));
+              },
+              child: Text("영어 -> 한글"),
             ),
             TextButton(
               onPressed: () {
