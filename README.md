@@ -1,4 +1,7 @@
 # korea_regexp
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 https://github.com/bluewings/korean-regexp
 
@@ -49,3 +52,23 @@ ex) ㄱㅇㄷ -> 강원도
 
 천천히 추가할 예정이지만, 완성되지 않은 기능이나 에러에 대한 pr은 언제나 환영입니다.
 
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://honor-driven.dev/"><img src="https://avatars.githubusercontent.com/u/54665433?v=4?s=100" width="100px;" alt=""/><br /><sub><b>홍종표</b></sub></a><br /><a href="https://github.com/jpoh281/flutter_korea_regexp/commits?author=jpoh281" title="Code">💻</a> <a href="https://github.com/jpoh281/flutter_korea_regexp/commits?author=jpoh281" title="Documentation">📖</a> <a href="https://github.com/jpoh281/flutter_korea_regexp/commits?author=jpoh281" title="Tests">⚠️</a> <a href="#ideas-jpoh281" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-jpoh281" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
