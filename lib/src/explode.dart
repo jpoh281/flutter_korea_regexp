@@ -13,12 +13,12 @@ explode(String text, {bool grouped = false}) {
         phonemesResult.finaleOffset != -1) {
       tempAccum.add(phonemesResult.initial);
       (mixed[phonemesResult.medial] != null &&
-              presentOnKeyboard.indexOf(phonemesResult.medial) != -1)
+              presentOnKeyboard.contains(phonemesResult.medial))
           ? mixed[phonemesResult.medial]!
               .forEach((element) => tempAccum.add(element))
           : tempAccum.add(phonemesResult.medial);
       (mixed[phonemesResult.finale] != null &&
-              presentOnKeyboard.indexOf(phonemesResult.finale) == -1)
+              !presentOnKeyboard.contains(phonemesResult.finale))
           ? mixed[phonemesResult.finale]!
               .forEach((element) => tempAccum.add(element))
           : tempAccum.add(phonemesResult.finale);

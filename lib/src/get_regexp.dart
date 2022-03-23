@@ -12,8 +12,8 @@ getInitialSearchRegExp(String initial) {
   return initial;
 }
 
-var FUZZY = '__${int.parse('fuzzy', radix: 36)}__';
-var IGNORE_SPACE = '__${int.parse('ignorespace', radix: 36)}__';
+var fuzzy = '__${int.parse('fuzzy', radix: 36)}__';
+var ignoreSpace = '__${int.parse('ignorespace', radix: 36)}__';
 
 getRegExp(String search, RegExpOptions options) {
   List<String> frontChars = search.split('');
@@ -66,9 +66,9 @@ getRegExp(String search, RegExpOptions options) {
         patterns.length > 1 ? '(${patterns.join('|')})' : patterns[0];
   }
   var glue = options.fuzzy
-      ? FUZZY
+      ? fuzzy
       : options.ignoreSpace
-          ? IGNORE_SPACE
+          ? ignoreSpace
           : '';
   var frontCharsPattern = options.initialSearch
       ? frontChars
@@ -85,8 +85,8 @@ getRegExp(String search, RegExpOptions options) {
 
   if (glue != '') {
     pattern = pattern
-        .replaceAll(RegExp(FUZZY), '\.*')
-        .replaceAll(RegExp(IGNORE_SPACE), '\s*');
+        .replaceAll(RegExp(fuzzy), '\.*')
+        .replaceAll(RegExp(ignoreSpace), '\s*');
   }
   return RegExp(pattern, caseSensitive: !options.ignoreCase);
 }
