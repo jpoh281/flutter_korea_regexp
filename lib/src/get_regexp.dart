@@ -4,10 +4,10 @@ import 'package:korea_regexp/src/get_phonemes.dart';
 import 'package:korea_regexp/src/models/regexp_options.dart';
 
 getInitialSearchRegExp(String initial) {
-  var initialOffset = INITIALS.indexOf(initial);
+  var initialOffset = initials.indexOf(initial);
   if (initialOffset != -1) {
-    var baseCode = initialOffset * MEDIALS.length * FINALES.length + BASE;
-    return '[${String.fromCharCode(baseCode)}-${String.fromCharCode(baseCode + MEDIALS.length * FINALES.length - 1)}]';
+    var baseCode = initialOffset * medials.length * finales.length + base;
+    return '[${String.fromCharCode(baseCode)}-${String.fromCharCode(baseCode + medials.length * finales.length - 1)}]';
   }
   return initial;
 }
@@ -27,36 +27,36 @@ getRegExp(String search, RegExpOptions options) {
     frontChars = frontChars.sublist(0, frontChars.length - 1);
 
     var baseCode =
-        phonemes.initialOffset * MEDIALS.length * FINALES.length + BASE;
+        phonemes.initialOffset * medials.length * finales.length + base;
     List<String> patterns = [];
     // 종성으로 끝나는 경우 ( 받침이 있는 경우)
     if (phonemes.finale != '') {
       patterns.add(lastChar);
 
       // 종성이 초성으로 사용 가능한 경우
-      if (INITIALS.contains(phonemes.finale)) {
+      if (initials.contains(phonemes.finale)) {
         patterns.add(
-            '${String.fromCharCode(baseCode + phonemes.medialOffset * FINALES.length)}${getInitialSearchRegExp(phonemes.finale)}');
+            '${String.fromCharCode(baseCode + phonemes.medialOffset * finales.length)}${getInitialSearchRegExp(phonemes.finale)}');
       }
-      if (MIXED[phonemes.finale] != null) {
+      if (mixed[phonemes.finale] != null) {
         patterns.add(
-            '${String.fromCharCode((baseCode + phonemes.medialOffset * FINALES.length + FINALES.join('').indexOf(MIXED[phonemes.finale]![0])) + 1)}${getInitialSearchRegExp(MIXED[phonemes.finale]![1])}');
+            '${String.fromCharCode((baseCode + phonemes.medialOffset * finales.length + finales.join('').indexOf(mixed[phonemes.finale]![0])) + 1)}${getInitialSearchRegExp(mixed[phonemes.finale]![1])}');
       }
     } else if (phonemes.medial != '') {
       int from, to;
 
-      if (MEDIAL_RANGE[phonemes.medial] != null) {
+      if (medialRange[phonemes.medial] != null) {
         from = baseCode +
-            MEDIALS.join('').indexOf(MEDIAL_RANGE[phonemes.medial]![0]) *
-                FINALES.length;
+            medials.join('').indexOf(medialRange[phonemes.medial]![0]) *
+                finales.length;
         to = baseCode +
-            MEDIALS.join('').indexOf(MEDIAL_RANGE[phonemes.medial]![1]) *
-                FINALES.length +
-            FINALES.length -
+            medials.join('').indexOf(medialRange[phonemes.medial]![1]) *
+                finales.length +
+            finales.length -
             1;
       } else {
-        from = baseCode + phonemes.medialOffset * FINALES.length;
-        to = from + FINALES.length - 1;
+        from = baseCode + phonemes.medialOffset * finales.length;
+        to = from + finales.length - 1;
       }
       patterns.add('[${String.fromCharCode(from)}-${String.fromCharCode(to)}]');
     } else if (phonemes.initial != '') {

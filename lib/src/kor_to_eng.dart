@@ -2,7 +2,7 @@ import 'package:korea_regexp/src/constant.dart';
 import 'package:korea_regexp/src/explode.dart';
 
 Map<String, String> KR_TO_EN =
-    Map.fromIterables(KEYS.map((e) => e[0]), KEYS.map((e) => e[1]));
+    Map.fromIterables(keys.map((e) => e[0]), keys.map((e) => e[1]));
 
 korToEng(String text) {
   return text

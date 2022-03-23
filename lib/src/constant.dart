@@ -1,14 +1,14 @@
 // 초성으로만 존재하는 한글 확인
-String onlyInitialKorean = r'[ㄱ-ㅎ]';
+const String onlyInitialKorean = r'[ㄱ-ㅎ]';
 RegExp onlyInitialKoreanRegex = RegExp(onlyInitialKorean);
 
 // 완성된 한글 확인
-String completedKorean = r'[가-힣]';
+const String completedKorean = r'[가-힣]';
 RegExp completedKoreanRegex = RegExp(completedKorean);
 
-int BASE = '가'.runes.first; // 한글 코드 시작: 44032
+int base = '가'.runes.first; // 한글 코드 시작: 44032
 
-const INITIALS = [
+const initials = [
   'ㄱ',
   'ㄲ',
   'ㄴ',
@@ -30,7 +30,7 @@ const INITIALS = [
   'ㅎ'
 ];
 
-const MEDIALS = [
+const medials = [
   'ㅏ',
   'ㅐ',
   'ㅑ',
@@ -54,7 +54,7 @@ const MEDIALS = [
   'ㅣ'
 ];
 
-const FINALES = [
+const finales = [
   '',
   'ㄱ',
   'ㄲ',
@@ -85,7 +85,7 @@ const FINALES = [
   'ㅎ'
 ];
 
-const Map<String, List<String>> MIXED = {
+const Map<String, List<String>> mixed = {
   'ㄲ': ['ㄱ', 'ㄱ'],
   'ㄳ': ['ㄱ', 'ㅅ'],
   'ㄵ': ['ㄴ', 'ㅈ'],
@@ -108,13 +108,13 @@ const Map<String, List<String>> MIXED = {
   'ㅢ': ['ㅡ', 'ㅣ']
 };
 
-const Map<String, List<String>> MEDIAL_RANGE = {
+const Map<String, List<String>> medialRange = {
   'ㅗ': ['ㅗ', 'ㅚ'],
   'ㅜ': ['ㅜ', 'ㅟ'],
   'ㅡ': ['ㅡ', 'ㅢ']
 };
 
-const List<String> PRESENT_ON_KEYBOARD = [
+const List<String> presentOnKeyboard = [
   'ㄱ',
   'ㄲ',
   'ㄴ',
@@ -150,7 +150,7 @@ const List<String> PRESENT_ON_KEYBOARD = [
   'ㅣ',
 ];
 
-const KEYS = [
+const keys = [
   ['ㄱ', 'r'],
   ['ㄲ', 'R'],
   ['ㄴ', 's'],

@@ -12,16 +12,16 @@ PhonemesResult getPhonemes(String char) {
 
   if (onlyInitialKoreanRegex.hasMatch(char)) {
     initial = char;
-    initialOffset = INITIALS.indexOf(initial);
+    initialOffset = initials.indexOf(initial);
   } else if (completedKoreanRegex.hasMatch(char)) {
-    var temp = char.runes.first - BASE;
-    finaleOffset = temp % FINALES.length;
-    medialOffset = ((temp - finaleOffset) ~/ FINALES.length) % MEDIALS.length;
-    initialOffset = ((temp - finaleOffset) ~/ FINALES.length - medialOffset) ~/
-        MEDIALS.length;
-    initial = INITIALS[initialOffset];
-    medial = MEDIALS[medialOffset];
-    finale = FINALES[finaleOffset];
+    var temp = char.runes.first - base;
+    finaleOffset = temp % finales.length;
+    medialOffset = ((temp - finaleOffset) ~/ finales.length) % medials.length;
+    initialOffset = ((temp - finaleOffset) ~/ finales.length - medialOffset) ~/
+        medials.length;
+    initial = initials[initialOffset];
+    medial = medials[medialOffset];
+    finale = finales[finaleOffset];
   }
 
   return PhonemesResult(

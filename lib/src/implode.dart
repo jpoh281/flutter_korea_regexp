@@ -1,6 +1,6 @@
 import 'package:korea_regexp/src/constant.dart';
 
-final complexDict = MIXED.map((k, v) => MapEntry(v.join(), k));
+final complexDict = mixed.map((k, v) => MapEntry(v.join(), k));
 
 String implode(String input) {
   /// 인접한 모음을 하나의 복합 모음으로 합친다.
@@ -126,10 +126,10 @@ SyllableForm createSyllableFormByMedial(List<String> block) {
 }
 
 /// 해당 글자가 중성인지
-bool _isMedial(String? char) => MEDIALS.contains(char);
+bool _isMedial(String? char) => medials.contains(char);
 
 /// 해당 글자가 종성인지
-bool _isFinale(String? char) => FINALES.contains(char);
+bool _isFinale(String? char) => finales.contains(char);
 
 /// 복합 자모일 경우 합친 글자를 리턴한다
 String? _mix(String first, String last) => complexDict['$first$last'];
@@ -162,7 +162,7 @@ class SyllableForm {
 
 /// 올바른 초성, 중성, 종성일 경우 하나의 한글 음절을 구할 수 있다.
 ///
-/// 계산식에 필요한 값은 [INITIALS], [MEDIALS], [FINALES] 리스트에 알고리즘적으로 매핑되어 있다.
+/// 계산식에 필요한 값은 [initials], [medials], [finales] 리스트에 알고리즘적으로 매핑되어 있다.
 /// for Example,
 /// ```dart
 /// var composition = Composition('ㅎ', 'ㅏ', 'ㄴ');
@@ -179,18 +179,18 @@ class Composition {
       : this._(syllableForm.initial, syllableForm.medial, syllableForm.finale);
 
   Composition._(String initial, String medial, String finale)
-      : initial = INITIALS.indexOf(complexDict[initial] ?? initial),
-        medial = MEDIALS.indexOf(complexDict[medial] ?? medial),
-        finale = FINALES.indexOf(complexDict[finale] ?? finale);
+      : initial = initials.indexOf(complexDict[initial] ?? initial),
+        medial = medials.indexOf(complexDict[medial] ?? medial),
+        finale = finales.indexOf(complexDict[finale] ?? finale);
 
   bool get isValid => initial != -1 && medial != -1;
 
   String toSyllable() => String.fromCharCode(_syllableCharCode());
 
   int _syllableCharCode() {
-    return BASE +
-        initial * (MEDIALS.length * FINALES.length) +
-        medial * FINALES.length +
+    return base +
+        initial * (medials.length * finales.length) +
+        medial * finales.length +
         finale;
   }
 
