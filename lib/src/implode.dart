@@ -1,8 +1,5 @@
 import 'package:korea_regexp/src/constant.dart';
 
-final medialComplexDict = medialMixed.map((k, v) => MapEntry(v.join(), k));
-final finaleComplexDict = finaleMixed.map((k, v) => MapEntry(v.join(), k));
-
 String implode(String input) {
   /// 인접한 모음을 하나의 복합 모음으로 합친다.
   final letters = mixMedial(input.split(''));
@@ -25,7 +22,7 @@ String implode(String input) {
 List<String> mixMedial(List<String> inputs) {
   final chars = [inputs.first];
   inputs.forEachFromNext((previous, current) {
-    final mixedMedial = _mixMedial(previous, current);
+    final mixedMedial = _findMixedMedial('$previous$current');
     if (mixedMedial != null) {
       chars.last = mixedMedial;
     } else {
@@ -69,7 +66,7 @@ List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
         (curr == items.last && curr.finales.length >= MIX_LETTERS_LENGTH)) {
       final letters = curr.finales.take(MIX_LETTERS_LENGTH);
       final rest = curr.finales.skip(MIX_LETTERS_LENGTH);
-      final mixedFinale = _mixFinale(letters.first, letters.last);
+      final mixedFinale = _findMixedFinale('${letters.first}${letters.last}');
       if (mixedFinale != null) {
         curr.finales = [mixedFinale, ...rest];
       }
@@ -132,13 +129,22 @@ bool _isMedial(String? char) => medials.contains(char);
 /// 해당 글자가 종성인지
 bool _isFinale(String? char) => finales.contains(char);
 
-/// 복합 중성일 경우 합친 글자를 리턴한다
-String? _mixMedial(String first, String last) =>
-    medialComplexDict['$first$last'];
+/// 두 모음을 합친 복합 중성이 있으면 그 글자를 리턴한다
+String? _findMixedMedial(String decomposedVowels) =>
+    _mixedMedial[decomposedVowels];
 
-/// 복합 종성일 경우 합친 글자를 리턴한다
-String? _mixFinale(String first, String last) =>
-    finaleComplexDict['$first$last'];
+/// 두 자음을 합친 복합 종성이 있으면 그 글자를 리턴한다
+String? _findMixedFinale(String decomposedConsonants) =>
+    _mixedFinale[decomposedConsonants];
+
+final _mixedMedial = _reversed(medialMixed);
+final _mixedFinale = _reversed(finaleMixed);
+
+Map _reversed(Map<String, List> mixed) {
+  return {
+    for (var e in mixed.entries) e.value.join(): e.key,
+  };
+}
 
 class Group {
   List<String> initials = [];
@@ -185,9 +191,9 @@ class Composition {
       : this._(syllableForm.initial, syllableForm.medial, syllableForm.finale);
 
   Composition._(String initial, String medial, String finale)
-      : initial = initials.indexOf(finaleComplexDict[initial] ?? initial),
-        medial = medials.indexOf(medialComplexDict[medial] ?? medial),
-        finale = finales.indexOf(finaleComplexDict[finale] ?? finale);
+      : initial = initials.indexOf(_findMixedFinale(initial) ?? initial),
+        medial = medials.indexOf(_findMixedMedial(medial) ?? medial),
+        finale = finales.indexOf(_findMixedFinale(finale) ?? finale);
 
   bool get isValid => initial != -1 && medial != -1;
 
