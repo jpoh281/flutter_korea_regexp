@@ -1,6 +1,5 @@
 import 'package:korea_regexp/src/constant.dart';
 
-final complexDict = mixed.map((k, v) => MapEntry(v.join(), k));
 final medialComplexDict = medialMixed.map((k, v) => MapEntry(v.join(), k));
 final finaleComplexDict = finaleMixed.map((k, v) => MapEntry(v.join(), k));
 
@@ -186,9 +185,9 @@ class Composition {
       : this._(syllableForm.initial, syllableForm.medial, syllableForm.finale);
 
   Composition._(String initial, String medial, String finale)
-      : initial = initials.indexOf(complexDict[initial] ?? initial),
-        medial = medials.indexOf(complexDict[medial] ?? medial),
-        finale = finales.indexOf(complexDict[finale] ?? finale);
+      : initial = initials.indexOf(finaleComplexDict[initial] ?? initial),
+        medial = medials.indexOf(medialComplexDict[medial] ?? medial),
+        finale = finales.indexOf(finaleComplexDict[finale] ?? finale);
 
   bool get isValid => initial != -1 && medial != -1;
 
