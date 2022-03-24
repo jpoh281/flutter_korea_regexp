@@ -35,16 +35,16 @@ List<String> mixMedial(List<String> inputs) {
 /// 모음으로 시작하는 그룹들을 만든다.
 List<Group> createGroupsByMedial(List<String> chars) {
   var cursor = Group.empty();
-  final items = [cursor];
-  chars.forEach((e) {
-    if (_isMedial(e)) {
-      cursor = Group.fromMedial(e);
-      items.add(cursor);
+  final groups = [cursor];
+  for (var char in chars) {
+    if (_isMedial(char)) {
+      cursor = Group.fromMedial(char);
+      groups.add(cursor);
     } else {
-      cursor.finales.add(e);
+      cursor.finales.add(char);
     }
-  });
-  return items;
+  }
+  return groups;
 }
 
 /// 각 그룹을 순회하면서 종성의 복합자음을 정리하고, 앞 그룹에서 종성으로 사용하고 남은 자음들을 초성으로 가져온다.
@@ -60,12 +60,12 @@ List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
       prev.finales = prev.finales.take(1).toList();
     }
 
-    const MIX_LETTERS_LENGTH = 2;
-    const NEXT_INITIAL_LENGTH = 1;
-    if (curr.finales.length >= MIX_LETTERS_LENGTH + NEXT_INITIAL_LENGTH ||
-        (curr == items.last && curr.finales.length >= MIX_LETTERS_LENGTH)) {
-      final letters = curr.finales.take(MIX_LETTERS_LENGTH);
-      final rest = curr.finales.skip(MIX_LETTERS_LENGTH);
+    const mixedFinaleLength = 2;
+    const nextInitialMinimumLength = 1;
+    if (curr.finales.length >= mixedFinaleLength + nextInitialMinimumLength ||
+        (curr == items.last && curr.finales.length >= mixedFinaleLength)) {
+      final letters = curr.finales.take(mixedFinaleLength);
+      final rest = curr.finales.skip(mixedFinaleLength);
       final mixedFinale = _findMixedFinale('${letters.first}${letters.last}');
       if (mixedFinale != null) {
         curr.finales = [mixedFinale, ...rest];
@@ -151,7 +151,7 @@ class Group {
   final String medial;
   List<String> finales = [];
 
-  Group.fromMedial(String medial) : medial = medial;
+  Group.fromMedial(this.medial);
 
   Group.empty() : this.fromMedial('');
 
@@ -211,10 +211,10 @@ class Composition {
 }
 
 extension _<E> on List<E> {
-  void forEachFromNext(void f(E previousValue, E element)) {
-    if (this.isEmpty) return;
-    var previousValue = this.first;
-    this.skip(1).forEach((element) {
+  void forEachFromNext(void Function(E previousValue, E element) f) {
+    if (isEmpty) return;
+    var previousValue = first;
+    skip(1).forEach((element) {
       f(previousValue, element);
       previousValue = element;
     });
