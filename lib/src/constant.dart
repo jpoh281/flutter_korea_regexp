@@ -86,6 +86,11 @@ const finales = [
 ];
 
 const Map<String, List<String>> mixed = {
+  ...finaleMixed,
+  ...medialMixed,
+};
+
+const Map<String, List<String>> finaleMixed = {
   'ㄲ': ['ㄱ', 'ㄱ'],
   'ㄳ': ['ㄱ', 'ㅅ'],
   'ㄵ': ['ㄴ', 'ㅈ'],
@@ -99,6 +104,8 @@ const Map<String, List<String>> mixed = {
   'ㅀ': ['ㄹ', 'ㅎ'],
   'ㅄ': ['ㅂ', 'ㅅ'],
   'ㅆ': ['ㅅ', 'ㅅ'],
+};
+const Map<String, List<String>> medialMixed = {
   'ㅘ': ['ㅗ', 'ㅏ'],
   'ㅙ': ['ㅗ', 'ㅐ'],
   'ㅚ': ['ㅗ', 'ㅣ'],
