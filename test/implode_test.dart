@@ -25,6 +25,10 @@ main() {
     test('합칠 수 있는 복합 모음이 없는 경우 변경 사항이 없다', () {
       expect(mixMedial(['ㅇ', 'ㅣ', 'ㅇ']), ['ㅇ', 'ㅣ', 'ㅇ']);
     });
+    test('복합 자음은 합치지 않는다', () {
+      expect(mixMedial(['ㅂ', 'ㅏ', 'ㄱ', 'ㄱ']), ['ㅂ', 'ㅏ', 'ㄱ', 'ㄱ']);
+      expect(mixMedial(['ㅅ', 'ㅅ', 'ㅏ', 'ㄹ']), ['ㅅ', 'ㅅ', 'ㅏ', 'ㄹ']);
+    });
   });
 
   group('createGroupsByMedial', () {
@@ -122,6 +126,16 @@ main() {
           mixFinaleAndReplaceTheRemainingFinalesToInitials([previous, current]);
       //then
       expect(groups.last.finales, ['ㅋ', 'ㅎ']);
+    });
+    test('복합모음은 정리되지 않는다', () {
+      //given
+      final previous = Group.empty();
+      final current = Group.fromMedial('ㅗㅏ');
+      //when
+      final groups =
+          mixFinaleAndReplaceTheRemainingFinalesToInitials([previous, current]);
+      //then
+      expect(groups.last.medial, 'ㅗㅏ');
     });
   });
 
