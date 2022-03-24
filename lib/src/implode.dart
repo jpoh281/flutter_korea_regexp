@@ -1,6 +1,7 @@
 import 'package:korea_regexp/src/constant.dart';
 
 final complexDict = mixed.map((k, v) => MapEntry(v.join(), k));
+final medialComplexDict = medialMixed.map((k, v) => MapEntry(v.join(), k));
 
 String implode(String input) {
   /// 인접한 모음을 하나의 복합 모음으로 합친다.
@@ -24,8 +25,8 @@ String implode(String input) {
 List<String> mixMedial(List<String> inputs) {
   final chars = [inputs.first];
   inputs.forEachFromNext((previous, current) {
-    final mixedMedial = _mix(previous, current);
-    if (_isMedial(previous) && _isMedial(current) && mixedMedial != null) {
+    final mixedMedial = _mixMedial(previous, current);
+    if (mixedMedial != null) {
       chars.last = mixedMedial;
     } else {
       chars.add(current);
@@ -133,6 +134,8 @@ bool _isFinale(String? char) => finales.contains(char);
 
 /// 복합 자모일 경우 합친 글자를 리턴한다
 String? _mix(String first, String last) => complexDict['$first$last'];
+String? _mixMedial(String first, String last) =>
+    medialComplexDict['$first$last'];
 
 class Group {
   List<String> initials = [];
