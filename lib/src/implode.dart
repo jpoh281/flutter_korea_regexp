@@ -2,6 +2,7 @@ import 'package:korea_regexp/src/constant.dart';
 
 final complexDict = mixed.map((k, v) => MapEntry(v.join(), k));
 final medialComplexDict = medialMixed.map((k, v) => MapEntry(v.join(), k));
+final finaleComplexDict = finaleMixed.map((k, v) => MapEntry(v.join(), k));
 
 String implode(String input) {
   /// 인접한 모음을 하나의 복합 모음으로 합친다.
@@ -50,7 +51,7 @@ List<Group> createGroupsByMedial(List<String> chars) {
   return items;
 }
 
-/// 각 그룹을 순회하면서 복합자음을 정리하고, 앞 그룹에서 종성으로 사용하고 남은 자음들을 초성으로 가져온다.
+/// 각 그룹을 순회하면서 종성의 복합자음을 정리하고, 앞 그룹에서 종성으로 사용하고 남은 자음들을 초성으로 가져온다.
 List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
     List<Group> groups) {
   final items = List.of(groups);
@@ -69,7 +70,7 @@ List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
         (curr == items.last && curr.finales.length >= MIX_LETTERS_LENGTH)) {
       final letters = curr.finales.take(MIX_LETTERS_LENGTH);
       final rest = curr.finales.skip(MIX_LETTERS_LENGTH);
-      final mixedFinale = _mix(letters.first, letters.last);
+      final mixedFinale = _mixFinale(letters.first, letters.last);
       if (mixedFinale != null) {
         curr.finales = [mixedFinale, ...rest];
       }
@@ -132,10 +133,13 @@ bool _isMedial(String? char) => medials.contains(char);
 /// 해당 글자가 종성인지
 bool _isFinale(String? char) => finales.contains(char);
 
-/// 복합 자모일 경우 합친 글자를 리턴한다
-String? _mix(String first, String last) => complexDict['$first$last'];
+/// 복합 중성일 경우 합친 글자를 리턴한다
 String? _mixMedial(String first, String last) =>
     medialComplexDict['$first$last'];
+
+/// 복합 종성일 경우 합친 글자를 리턴한다
+String? _mixFinale(String first, String last) =>
+    finaleComplexDict['$first$last'];
 
 class Group {
   List<String> initials = [];
