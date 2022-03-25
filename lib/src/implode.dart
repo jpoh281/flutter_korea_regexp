@@ -1,7 +1,5 @@
 import 'package:korea_regexp/src/constant.dart';
 
-final complexDict = mixed.map((k, v) => MapEntry(v.join(), k));
-
 String implode(String input) {
   /// 인접한 모음을 하나의 복합 모음으로 합친다.
   final letters = mixMedial(input.split(''));
@@ -24,8 +22,8 @@ String implode(String input) {
 List<String> mixMedial(List<String> inputs) {
   final chars = [inputs.first];
   inputs.forEachFromNext((previous, current) {
-    final mixedMedial = _mix(previous, current);
-    if (_isMedial(previous) && _isMedial(current) && mixedMedial != null) {
+    final mixedMedial = _findMixedMedial('$previous$current');
+    if (mixedMedial != null) {
       chars.last = mixedMedial;
     } else {
       chars.add(current);
@@ -37,19 +35,19 @@ List<String> mixMedial(List<String> inputs) {
 /// 모음으로 시작하는 그룹들을 만든다.
 List<Group> createGroupsByMedial(List<String> chars) {
   var cursor = Group.empty();
-  final items = [cursor];
-  chars.forEach((e) {
-    if (_isMedial(e)) {
-      cursor = Group.fromMedial(e);
-      items.add(cursor);
+  final groups = [cursor];
+  for (var char in chars) {
+    if (_isMedial(char)) {
+      cursor = Group.fromMedial(char);
+      groups.add(cursor);
     } else {
-      cursor.finales.add(e);
+      cursor.finales.add(char);
     }
-  });
-  return items;
+  }
+  return groups;
 }
 
-/// 각 그룹을 순회하면서 복합자음을 정리하고, 앞 그룹에서 종성으로 사용하고 남은 자음들을 초성으로 가져온다.
+/// 각 그룹을 순회하면서 종성의 복합자음을 정리하고, 앞 그룹에서 종성으로 사용하고 남은 자음들을 초성으로 가져온다.
 List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
     List<Group> groups) {
   final items = List.of(groups);
@@ -62,13 +60,13 @@ List<Group> mixFinaleAndReplaceTheRemainingFinalesToInitials(
       prev.finales = prev.finales.take(1).toList();
     }
 
-    const MIX_LETTERS_LENGTH = 2;
-    const NEXT_INITIAL_LENGTH = 1;
-    if (curr.finales.length >= MIX_LETTERS_LENGTH + NEXT_INITIAL_LENGTH ||
-        (curr == items.last && curr.finales.length >= MIX_LETTERS_LENGTH)) {
-      final letters = curr.finales.take(MIX_LETTERS_LENGTH);
-      final rest = curr.finales.skip(MIX_LETTERS_LENGTH);
-      final mixedFinale = _mix(letters.first, letters.last);
+    const mixedFinaleLength = 2;
+    const nextInitialMinimumLength = 1;
+    if (curr.finales.length >= mixedFinaleLength + nextInitialMinimumLength ||
+        (curr == items.last && curr.finales.length >= mixedFinaleLength)) {
+      final letters = curr.finales.take(mixedFinaleLength);
+      final rest = curr.finales.skip(mixedFinaleLength);
+      final mixedFinale = _findMixedFinale('${letters.first}${letters.last}');
       if (mixedFinale != null) {
         curr.finales = [mixedFinale, ...rest];
       }
@@ -131,15 +129,29 @@ bool _isMedial(String? char) => medials.contains(char);
 /// 해당 글자가 종성인지
 bool _isFinale(String? char) => finales.contains(char);
 
-/// 복합 자모일 경우 합친 글자를 리턴한다
-String? _mix(String first, String last) => complexDict['$first$last'];
+/// 두 모음을 합친 복합 중성이 있으면 그 글자를 리턴한다
+String? _findMixedMedial(String decomposedVowels) =>
+    _mixedMedial[decomposedVowels];
+
+/// 두 자음을 합친 복합 종성이 있으면 그 글자를 리턴한다
+String? _findMixedFinale(String decomposedConsonants) =>
+    _mixedFinale[decomposedConsonants];
+
+final _mixedMedial = _reversed(medialMixed);
+final _mixedFinale = _reversed(finaleMixed);
+
+Map _reversed(Map<String, List> mixed) {
+  return {
+    for (var e in mixed.entries) e.value.join(): e.key,
+  };
+}
 
 class Group {
   List<String> initials = [];
   final String medial;
   List<String> finales = [];
 
-  Group.fromMedial(String medial) : medial = medial;
+  Group.fromMedial(this.medial);
 
   Group.empty() : this.fromMedial('');
 
@@ -179,9 +191,9 @@ class Composition {
       : this._(syllableForm.initial, syllableForm.medial, syllableForm.finale);
 
   Composition._(String initial, String medial, String finale)
-      : initial = initials.indexOf(complexDict[initial] ?? initial),
-        medial = medials.indexOf(complexDict[medial] ?? medial),
-        finale = finales.indexOf(complexDict[finale] ?? finale);
+      : initial = initials.indexOf(_findMixedFinale(initial) ?? initial),
+        medial = medials.indexOf(_findMixedMedial(medial) ?? medial),
+        finale = finales.indexOf(_findMixedFinale(finale) ?? finale);
 
   bool get isValid => initial != -1 && medial != -1;
 
@@ -199,10 +211,10 @@ class Composition {
 }
 
 extension _<E> on List<E> {
-  void forEachFromNext(void f(E previousValue, E element)) {
-    if (this.isEmpty) return;
-    var previousValue = this.first;
-    this.skip(1).forEach((element) {
+  void forEachFromNext(void Function(E previousValue, E element) f) {
+    if (isEmpty) return;
+    var previousValue = first;
+    skip(1).forEach((element) {
       f(previousValue, element);
       previousValue = element;
     });
