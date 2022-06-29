@@ -6,6 +6,9 @@ class PhonemesResult {
   final int medialOffset;
   final int finaleOffset;
 
+  bool get isNotEmpty =>
+      initialOffset != -1 || medialOffset != -1 || finaleOffset != -1;
+
   PhonemesResult(
       {this.initial = '',
       this.medial = '',
