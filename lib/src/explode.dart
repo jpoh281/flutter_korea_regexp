@@ -8,12 +8,10 @@ explode(String text, {bool grouped = false}) {
     PhonemesResult phonemesResult = getPhonemes(char);
     List<String> tempAccum = [];
     // 초성 중성 종성 중 하나라도 비는게 없는 경우
-    if (phonemesResult.initialOffset != -1 ||
-        phonemesResult.medialOffset != -1 ||
-        phonemesResult.finaleOffset != -1) {
+    if (phonemesResult.isNotEmpty) {
       tempAccum.add(phonemesResult.initial);
       (mixed[phonemesResult.medial] != null &&
-              presentOnKeyboard.contains(phonemesResult.medial))
+              !presentOnKeyboard.contains(phonemesResult.medial))
           ? mixed[phonemesResult.medial]!
               .forEach((element) => tempAccum.add(element))
           : tempAccum.add(phonemesResult.medial);
@@ -32,3 +30,5 @@ explode(String text, {bool grouped = false}) {
 
   return grouped ? accum : accum.expand((element) => element).toList();
 }
+
+
