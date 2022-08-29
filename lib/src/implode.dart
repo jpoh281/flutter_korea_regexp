@@ -210,7 +210,7 @@ class Composition {
   String toString() => '$runtimeType($initial, $medial, $finale)';
 }
 
-extension _<E> on List<E> {
+extension ListX<E> on List<E> {
   void forEachFromNext(void Function(E previousValue, E element) f) {
     if (isEmpty) return;
     var previousValue = first;
