@@ -1,11 +1,11 @@
 import 'package:korea_regexp/korea_regexp.dart';
 
-var postPositions = [
+List<dynamic> postPositions = [
   ['은', '는'],
   ['이', '가'],
   ['을', '를'],
   ['과', '와']
-].fold(
+].fold<List<dynamic>>(
     [],
     (value, element) => [
           ...value,
