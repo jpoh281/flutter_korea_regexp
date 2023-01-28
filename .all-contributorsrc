@@ -5,7 +5,7 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
-    { 
+    {
       "login": "jpoh281",
       "name": "홍종표",
       "avatar_url": "https://avatars.githubusercontent.com/u/54665433?v=4",
@@ -16,11 +16,9 @@
         "test",
         "ideas",
         "maintenance"
-
       ]
     },
     {
-
       "login": "viiviii",
       "name": "viiviii",
       "avatar_url": "https://avatars.githubusercontent.com/u/75404713?v=4",
@@ -30,6 +28,15 @@
         "test",
         "ideas"
       ]
+    },
+    {
+      "login": "jiwon79",
+      "name": "Lee Jiwon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59159410?v=4",
+      "profile": "https://linktr.ee/jiiwon79",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -37,5 +44,6 @@
   "projectOwner": "jpoh281",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
