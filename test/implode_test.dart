@@ -3,19 +3,19 @@ import 'package:test/test.dart';
 
 main() {
   group('implode', () {
-    [
+    for (var e in [
       ['ㄲㅏㄱㄷㅜㄱㅣ', '깍두기'],
       ['ㄲㅏㄱㄱㄷㅜㄱㅣ', '깎두기'],
       ['ㅂㅜㄹㄷㅏㄹㄱ', '불닭'],
       ['ㅂㅜㄹㄷㅏㄹㄱㅇㅡㄴ', '불닭은'],
       ['ㅇㅓㅂㅔㄴㅈㅕㅅㅡ ㅇㅐㄴㄷㅡㄱㅔㅇㅣㅁ', '어벤져스 앤드게임'],
-    ].forEach((e) {
+    ]) {
       final hints = e.first;
       final text = e.last;
       test('implode $hints → $text', () {
         expect(implode(hints), text);
       });
-    });
+    }
   });
 
   group('mixMedial', () {

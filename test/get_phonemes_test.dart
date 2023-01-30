@@ -11,7 +11,7 @@ void main (){
     ['힣', ['ㅎ', 'ㅣ', 'ㅎ']],
     ['뷁', ['ㅂ', 'ㅞ', 'ㄺ']],
   ];
-  getPhonemesTest.forEach((element) {
+  for (var element in getPhonemesTest) {
     var char = element[0];
     var initial = element[1][0];
     var medial = element[1][1];
@@ -22,5 +22,5 @@ void main (){
       expect(phonemes.medial, medial);
       expect(phonemes.finale, finale);
     });
-  });
+  }
 }

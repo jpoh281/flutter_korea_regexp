@@ -2,7 +2,7 @@ import 'package:korea_regexp/korea_regexp.dart';
 import 'package:test/test.dart';
 
 void main(){
-  [
+  for (var e in [
     ['대한민ㄱ', '대한민[가-깋]'],
     ['대한민구', '대한민[구-귛]'],
     ['대한민국', '대한민(국|구[가-깋])'],
@@ -10,10 +10,10 @@ void main(){
     ['깎', '(깎|까[까-낗]|깍[가-깋])'],
     ['뷁', '(뷁|뷀[가-깋])'],
     ['korea', 'korea'],
-  ].forEach((e) {
+  ]) {
     test('getRegExp ${e[0]} → ${e[1]}',
         () => {expect(getRegExp(e[0], RegExpOptions()), RegExp(e[1]))});
-  });
+  }
 
   test(
       'initialSearch: false (default)',
