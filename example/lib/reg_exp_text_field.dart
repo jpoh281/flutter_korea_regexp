@@ -31,7 +31,7 @@ class _RegExpTextFieldState extends State<RegExpTextField> {
       if (focusNode.hasFocus) {
         if (overlayEntry == null) {
           overlayEntry = _createOverlayEntry();
-          Overlay.of(context)?.insert(overlayEntry!);
+          Overlay.of(context).insert(overlayEntry!);
         }
       } else {
         if (overlayEntry?.mounted ?? false) {
