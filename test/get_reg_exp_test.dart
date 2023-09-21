@@ -110,19 +110,19 @@ void main(){
   RegExp fuzzyFalse =
       getRegExp('ㅋㅍ', RegExpOptions(initialSearch: true, fuzzy: false));
   List<String> words = ['카페', '카카오페이', '카페오레', '카메라', '아카펠라'];
-  List<String> mached1 = words.where((e) => fuzzyFalse.hasMatch(e)).toList();
+  List<String> matched1 = words.where((e) => fuzzyFalse.hasMatch(e)).toList();
   test(
       'fuzzy: false',
       () {
-            expect(mached1, ['카페', '카페오레', '아카펠라']);
+            expect(matched1, ['카페', '카페오레', '아카펠라']);
           });
 
   RegExp fuzzyTrue =
   getRegExp('ㅋㅍ', RegExpOptions(initialSearch: true, fuzzy: true));
-  List<String> mached2 = words.where((e) => fuzzyTrue.hasMatch(e)).toList();
+  List<String> matched2 = words.where((e) => fuzzyTrue.hasMatch(e)).toList();
   test(
       'fuzzy: true',
           () {
-        expect(mached2, ['카페', '카카오페이', '카페오레', '아카펠라']);
+        expect(matched2, ['카페', '카카오페이', '카페오레', '아카펠라']);
       });
 }
