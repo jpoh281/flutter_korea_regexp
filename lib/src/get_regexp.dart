@@ -3,11 +3,11 @@ import 'package:korea_regexp/src/escape_regexp.dart';
 import 'package:korea_regexp/src/get_phonemes.dart';
 import 'package:korea_regexp/src/models/regexp_options.dart';
 
-getInitialSearchRegExp(String initial) {
+getInitialSearchRegExp(String initial, {bool allowOnlyInitial = false}) {
   var initialOffset = initials.indexOf(initial);
   if (initialOffset != -1) {
     var baseCode = initialOffset * medials.length * finales.length + base;
-    return '[${String.fromCharCode(baseCode)}-${String.fromCharCode(baseCode + medials.length * finales.length - 1)}]';
+    return '[${allowOnlyInitial ? initial : ''}${String.fromCharCode(baseCode)}-${String.fromCharCode(baseCode + medials.length * finales.length - 1)}]';
   }
   return initial;
 }
@@ -60,11 +60,13 @@ getRegExp(String search, RegExpOptions options) {
       }
       patterns.add('[${String.fromCharCode(from)}-${String.fromCharCode(to)}]');
     } else if (phonemes.initial != '') {
-      patterns.add(getInitialSearchRegExp(phonemes.initial));
+      patterns.add(
+          getInitialSearchRegExp(phonemes.initial, allowOnlyInitial: true));
     }
     lastCharPattern =
         patterns.length > 1 ? '(${patterns.join('|')})' : patterns[0];
   }
+
   var glue = options.fuzzy
       ? fuzzy
       : options.ignoreSpace
@@ -73,7 +75,7 @@ getRegExp(String search, RegExpOptions options) {
   var frontCharsPattern = options.initialSearch
       ? frontChars
           .map((char) => (RegExp('[ㄱ-ㅎ]').hasMatch(char)
-              ? getInitialSearchRegExp(char)
+              ? getInitialSearchRegExp(char, allowOnlyInitial: true)
               : escapeRegExp(char)))
           .join(glue)
       : escapeRegExp(frontChars.join(glue));
@@ -85,7 +87,7 @@ getRegExp(String search, RegExpOptions options) {
 
   if (glue != '') {
     pattern = pattern
-        .replaceAll(RegExp(fuzzy), '\.*')
+        .replaceAll(RegExp(fuzzy), '.*')
         .replaceAll(RegExp(ignoreSpace), '\s*');
   }
   return RegExp(pattern, caseSensitive: !options.ignoreCase);

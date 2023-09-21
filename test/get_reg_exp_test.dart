@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main(){
   for (var e in [
-    ['대한민ㄱ', '대한민[가-깋]'],
+    ['대한민ㄱ', '대한민[ㄱ가-깋]'],
     ['대한민구', '대한민[구-귛]'],
     ['대한민국', '대한민(국|구[가-깋])'],
     ['온라이', '온라[이-잏]'],
@@ -21,7 +21,7 @@ void main(){
             expect(getRegExp('ㅎㄱ', RegExpOptions(initialSearch: false)),
                 getRegExp('ㅎㄱ', RegExpOptions(initialSearch: false))),
             expect(getRegExp('ㅎㄱ', RegExpOptions(initialSearch: false)),
-                RegExp('ㅎ[가-깋]')),
+                RegExp('ㅎ[ㄱ가-깋]')),
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(initialSearch: false)),
                 RegExp('^ㅎㄱ\$'))
           });
@@ -30,9 +30,9 @@ void main(){
       'initialSearch: true',
       () => {
             expect(getRegExp('ㅎㄱ', RegExpOptions(initialSearch: true)),
-                RegExp('[하-힣][가-깋]')),
+                RegExp('[ㅎ하-힣][ㄱ가-깋]')),
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(initialSearch: true)),
-                RegExp('^[하-힣][가-깋]\$'))
+                RegExp('^[ㅎ하-힣][ㄱ가-깋]\$'))
           });
 
   test(
@@ -41,7 +41,7 @@ void main(){
             expect(getRegExp('ㅎㄱ', RegExpOptions(startsWith: false)),
                 getRegExp('ㅎㄱ', RegExpOptions(startsWith: false))),
             expect(getRegExp('ㅎㄱ', RegExpOptions(startsWith: false)),
-                RegExp('ㅎ[가-깋]')),
+                RegExp('ㅎ[ㄱ가-깋]')),
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(startsWith: false)),
                 RegExp('^ㅎㄱ\$'))
           });
@@ -50,7 +50,7 @@ void main(){
       'startsWith: true',
       () => {
             expect(getRegExp('ㅎㄱ', RegExpOptions(startsWith: true)),
-                RegExp('^ㅎ[가-깋]')),
+                RegExp('^ㅎ[ㄱ가-깋]')),
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(startsWith: true)),
                 RegExp('^\^ㅎㄱ\$'))
           });
@@ -61,7 +61,7 @@ void main(){
             expect(getRegExp('ㅎㄱ', RegExpOptions(endsWith: false)),
                 getRegExp('ㅎㄱ', RegExpOptions(endsWith: false)));
             expect(getRegExp('ㅎㄱ', RegExpOptions(endsWith: false)),
-                RegExp('ㅎ[가-깋]'));
+                RegExp('ㅎ[ㄱ가-깋]'));
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(endsWith: false)),
                 RegExp('^ㅎㄱ\$'));
           });
@@ -70,7 +70,7 @@ void main(){
       'endsWith: true',
       ()  {
             expect(getRegExp('ㅎㄱ', RegExpOptions(endsWith: true)),
-                RegExp('ㅎ[가-깋]\$'));
+                RegExp('ㅎ[ㄱ가-깋]\$'));
             expect(getRegExp('^ㅎㄱ\$', RegExpOptions(endsWith: true)),
                 RegExp('^ㅎㄱ\$\$'));
           });
@@ -97,14 +97,14 @@ void main(){
             expect(getRegExp('ㅎㄱ', RegExpOptions(ignoreCase: false)),
                 getRegExp('ㅎㄱ', RegExpOptions(ignoreCase: false)));
             expect(getRegExp('ㅎㄱ', RegExpOptions(ignoreCase: false)),
-                RegExp('ㅎ[가-깋]'));
+                RegExp('ㅎ[ㄱ가-깋]'));
           });
 
   test(
       'ignoreCase: true',
       ()  {
             expect(getRegExp('ㅎㄱ', RegExpOptions(ignoreCase: true)),
-                RegExp('ㅎ[가-깋]', caseSensitive: false));
+                RegExp('ㅎ[ㄱ가-깋]', caseSensitive: false));
           });
 
   RegExp fuzzyFalse =
