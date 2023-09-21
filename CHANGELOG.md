@@ -1,3 +1,8 @@
+## 1.1.0
+- 최소 버전 dart 3.0 변경
+- 초성을 검색할 때 해당 초성도 찾도록 수정
+- nonCapturedGroup 조건 추가
+
 ## 1.0.1
 - dart lint 일부 수정
 - lints, test 패키지 업그레이드 

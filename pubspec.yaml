@@ -1,6 +1,6 @@
 name: korea_regexp
 description: It is a package that makes it easier to handle Korean by using regular expressions. 정규표현식을 이용해 한국어를 더 쉽게 다룰 수 있게 해주는 패키지입니다.
-version: 1.0.1
+version: 1.1.0
 repository : https://github.com/jpoh281/flutter_korea_regexp
 
 environment:
