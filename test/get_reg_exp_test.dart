@@ -125,4 +125,12 @@ void main(){
           () {
         expect(matched2, ['카페', '카카오페이', '카페오레', '아카펠라']);
       });
+
+  test('nonCaptureGroup: false (default)', () {
+    expect(getRegExp('한글날', RegExpOptions(nonCaptureGroup: false)), RegExp('한글(날|나[라-맇])'));
+  });
+
+  test('nonCaptureGroup: true', () {
+    expect(getRegExp('한글날', RegExpOptions(nonCaptureGroup: true)), RegExp('한글(?:날|나[라-맇])'));
+  });
 }

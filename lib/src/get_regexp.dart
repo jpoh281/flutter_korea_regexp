@@ -63,8 +63,11 @@ getRegExp(String search, RegExpOptions options) {
       patterns.add(
           getInitialSearchRegExp(phonemes.initial, allowOnlyInitial: true));
     }
-    lastCharPattern =
-        patterns.length > 1 ? '(${patterns.join('|')})' : patterns[0];
+    lastCharPattern = patterns.length > 1
+        ? options.nonCaptureGroup
+            ? '(?:${patterns.join('|')})'
+            : '(${patterns.join('|')})'
+        : patterns[0];
   }
 
   var glue = options.fuzzy
