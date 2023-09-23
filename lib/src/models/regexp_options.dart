@@ -7,6 +7,7 @@ class RegExpOptions {
   final bool global;
   final bool fuzzy;
   final bool nonCaptureGroup;
+  final bool emptyMatchAll;
 
   const RegExpOptions({
     this.initialSearch = false,
@@ -17,5 +18,6 @@ class RegExpOptions {
     this.global = false,
     this.fuzzy = false,
     this.nonCaptureGroup = false,
+    this.emptyMatchAll = false,
   });
 }
