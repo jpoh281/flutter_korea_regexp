@@ -133,4 +133,12 @@ void main(){
   test('nonCaptureGroup: true', () {
     expect(getRegExp('한글날', RegExpOptions(nonCaptureGroup: true)), RegExp('한글(?:날|나[라-맇])'));
   });
+
+  test('emptyMatchAll: false (default)', () {
+    expect(getRegExp('', RegExpOptions(emptyMatchAll: false)), RegExp('\\\$'));
+  });
+
+  test('emptyMatchAll: true (default)', () {
+    expect(getRegExp('', RegExpOptions(emptyMatchAll: true)), RegExp(''));
+  });
 }

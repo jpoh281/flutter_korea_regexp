@@ -23,15 +23,19 @@ https://github.com/bluewings/korean-regexp
 - initial search : 초성으로 검색 여부
 ex) ㄱㅇㄷ -> 강원도
 
-- startsWith : 시작과 일치
+- startsWith: 시작과 일치 (default : false)
 
-- endsWith : 마지막과 일치
+- endsWith: 마지막과 일치 (default : false)
 
-- ignoreSpace : 공백 무시
+- ignoreSpace: 공백 무시 (default : false)
 
-- ignoreCase : 대소문자 무시
+- ignoreCase: 대소문자 무시 (default : false)
 
-- fuzzy
+- fuzzy: (default : false)
+
+- nonCapturingGroup: (default : false)
+
+- emptyMatchAll: empty string('') 입력 시 전체 매치 여부 (default : false) 
 
 ### 한타 -> 영타
 ![KakaoTalk_Photo_2021-11-01-23-58-35](https://user-images.githubusercontent.com/54665433/139692493-245f66f1-5b30-4152-af0b-2f25d3d85c6f.gif)
