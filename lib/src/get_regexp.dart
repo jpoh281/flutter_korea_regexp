@@ -16,6 +16,12 @@ var fuzzy = '__${int.parse('fuzzy', radix: 36)}__';
 var ignoreSpace = '__${int.parse('ignorespace', radix: 36)}__';
 
 getRegExp(String search, RegExpOptions options) {
+  if (search == '') {
+    /// 전체 리스트 노출
+    // return RegExp('');
+    /// 빈 리스트 노출
+    return RegExp('\\\$');
+  }
   List<String> frontChars = search.split('');
   String? lastChar = frontChars[frontChars.length - 1];
   String lastCharPattern = '';
